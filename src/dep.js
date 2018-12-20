@@ -11,7 +11,7 @@ class Dep {
   }
   notify() {
     for (const id in this.subs) {
-      this.subs[id].update(this.subs[id]);
+      this.subs[id].update();
     }
   }
   removeSub(watcher) {
