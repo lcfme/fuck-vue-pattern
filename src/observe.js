@@ -28,7 +28,6 @@ class Observer {
 function defineReactive(obj, key, val) {
   const dep = new Dep();
   const propertyDescriptor = Object.getOwnPropertyDescriptor(obj, key);
-  debugger;
   if (propertyDescriptor && propertyDescriptor.configurable === false) {
     return;
   }
@@ -43,7 +42,6 @@ function defineReactive(obj, key, val) {
     enumerable: true,
     configurable: false,
     get() {
-      debugger;
       const value = getter ? getter.call(obj) : val;
       if (Dep.target) {
         dep.depend();

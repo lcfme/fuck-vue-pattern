@@ -4,11 +4,10 @@ function createComputedGetter(self, key) {
     if (!watcher) {
       return;
     }
-    watcher.get();
     if (Dep.target) {
       watcher.depend();
     }
-    return watcher.value;
+    return watcher.get();
   };
 }
 
@@ -57,9 +56,6 @@ function initData(self, t) {
       },
       newVal => {
         console.log(`watcher:${props}:`, newVal);
-        // t.setData({
-        //   [props]: newVal
-        // });
       }
     );
   }
@@ -68,8 +64,8 @@ function initData(self, t) {
 class REH {
   constructor(t = {}) {
     this.t = t;
-    observe(t);
-    initComputed(this, t);
+    observe(t.data);
     initData(this, t);
+    initComputed(this, t);
   }
 }
